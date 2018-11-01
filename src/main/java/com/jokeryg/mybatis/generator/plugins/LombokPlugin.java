@@ -1,4 +1,4 @@
-package com.chrm.mybatis.generator.plugins;
+package com.jokeryg.mybatis.generator.plugins;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -119,8 +119,11 @@ public class LombokPlugin extends PluginAdapter {
      * @param topLevelClass
      */
     protected void addDataAnnotation(TopLevelClass topLevelClass) {
-        topLevelClass.addImportedType(dataAnnotation);
-        topLevelClass.addAnnotation("@Data");
+        String data = properties.getProperty("data");
+        if(data!=null&&data.equals("true")) {
+            topLevelClass.addImportedType(dataAnnotation);
+            topLevelClass.addAnnotation("@Data");
+        }
     }
 
 }
