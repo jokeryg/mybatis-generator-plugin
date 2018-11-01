@@ -1,4 +1,6 @@
-# MyBatis Generator Lombok plugin and Comment
+# MyBatis Generator plugin
+
+fork 修改自 [GuoGuiRong 的 MyBatis Generator Lombok plugin and Comment](https://github.com/GuoGuiRong/mybatis-generator-lombok-plugin)
 
 ## 实现的功能
 
