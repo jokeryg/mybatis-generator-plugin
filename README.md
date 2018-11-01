@@ -17,13 +17,13 @@ fork 修改自 [GuoGuiRong 的 MyBatis Generator Lombok plugin and Comment](http
 <plugin>
     <groupId>org.mybatis.generator</groupId>
     <artifactId>mybatis-generator-maven-plugin</artifactId>
-    <version>1.3.2</version>
+    <version>1.3.7</version>
     <configuration>
         <overwrite>true</overwrite>
     </configuration>
     <dependencies>
         <dependency>
-            <groupId>com.chrm</groupId>
+            <groupId>com.jokeryg</groupId>
             <artifactId>mybatis-generator-lombok-plugin</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -62,7 +62,8 @@ fork 修改自 [GuoGuiRong 的 MyBatis Generator Lombok plugin and Comment](http
 		</plugin>
 		<!-- 整合lombok-->
 		<plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin" >
-			<property name="hasLombok" value="true"/>
+		    <!--为true的时候自动为model类增加lombok的@Data注解-->
+			<property name="data" value="true"/>
 		</plugin>
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
