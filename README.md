@@ -7,6 +7,11 @@ fork 修改自 [GuoGuiRong 的 MyBatis Generator Lombok plugin and Comment](http
 - 主要整合了lombok插件实现getter/setter等通用方法的自动生成，同时自定义实现了一个注释生成器，
 通过抓取数据库表里面的注释作为实体类的注释内容。
 
+## 新增内容(targetRunTime的值"com.jokeryg.mybatis.generator.mybatis3.MySimple")
+
+- 生成insert,updateByPrimaryKey,selectByPrimaryKey，selectAll四个数据库方法，其中"PrimaryKey"为你表中具体的主键列的名称
+- <table>节点的mapperName可以用占位符方法写,即"{0}Dao"则javaMapper接口文件的名称为"数据表名Dao.java"形式，mapper的xml文件不受此值影响
+
 ## 插件的用法
 
 - 如果你想在你的maven中使用,就直接`git clone`这个项目到你的IDEA，然后使用`maven clean install`将这个项目添加到Maven仓库里去。
