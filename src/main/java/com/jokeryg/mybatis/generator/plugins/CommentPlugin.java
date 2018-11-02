@@ -13,13 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- *
- *  @Author: GuiRunning 郭贵荣
- *
- *  @Description: 自定义注释生成
- *
- *  @Date: 2018/7/14 0:57
- *
+ * @Author: GuiRunning 郭贵荣
+ * @Description: 自定义注释生成
+ * @Date: 2018/7/14 0:57
  */
 public class CommentPlugin extends PluginAdapter {
 
@@ -49,18 +45,21 @@ public class CommentPlugin extends PluginAdapter {
     }
 
     private void comment(JavaElement element, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
-        element.getJavaDocLines().clear();
-        element.addJavaDocLine("/**");
         String remark = introspectedColumn.getRemarks();
-        if (remark != null && remark.length() > 1) {
-            element.addJavaDocLine(" * " + remark);
-            element.addJavaDocLine(" *");
-        }
 
-        element.addJavaDocLine(" * Table:     " + introspectedTable.getFullyQualifiedTable());
-        element.addJavaDocLine(" * Column:    " + introspectedColumn.getActualColumnName());
-        element.addJavaDocLine(" * Nullable:  " + introspectedColumn.isNullable());
-        element.addJavaDocLine(" */");
+        if (remark != null && remark.length() > 1) {
+            element.getJavaDocLines().clear();
+            element.addJavaDocLine("/**");
+
+            element.addJavaDocLine(" * " + remark);
+//            element.addJavaDocLine(" *");
+
+
+//        element.addJavaDocLine(" * Table:     " + introspectedTable.getFullyQualifiedTable());
+//        element.addJavaDocLine(" * Column:    " + introspectedColumn.getActualColumnName());
+//        element.addJavaDocLine(" * Nullable:  " + introspectedColumn.isNullable());
+            element.addJavaDocLine(" */");
+        }
     }
 
     public boolean sqlMapResultMapWithoutBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
@@ -85,20 +84,20 @@ public class CommentPlugin extends PluginAdapter {
             Iterator<Element> it = es.iterator();
             HashMap map = new HashMap();
 
-            while(true) {
-                while(it.hasNext()) {
-                    Element e = (Element)it.next();
+            while (true) {
+                while (it.hasNext()) {
+                    Element e = (Element) it.next();
                     if (e instanceof TextElement) {
                         it.remove();
                     } else {
-                        XmlElement el = (XmlElement)e;
+                        XmlElement el = (XmlElement) e;
                         List<Attribute> as = el.getAttributes();
                         if (!as.isEmpty()) {
                             String col = null;
                             Iterator i$ = as.iterator();
 
-                            while(i$.hasNext()) {
-                                Attribute a = (Attribute)i$.next();
+                            while (i$.hasNext()) {
+                                Attribute a = (Attribute) i$.next();
                                 if (a.getName().equalsIgnoreCase("column")) {
                                     col = a.getValue();
                                     break;
@@ -132,8 +131,8 @@ public class CommentPlugin extends PluginAdapter {
                 Set<Element> set = map.keySet();
                 Iterator i$ = set.iterator();
 
-                while(i$.hasNext()) {
-                    Element e = (Element)i$.next();
+                while (i$.hasNext()) {
+                    Element e = (Element) i$.next();
                     int id = es.indexOf(e);
                     es.add(id, (Element) map.get(e));
                     es.add(id, new TextElement(""));
@@ -179,8 +178,8 @@ public class CommentPlugin extends PluginAdapter {
                     return;
                 }
 
-                attr = (Attribute)it.next();
-            } while(!attr.getName().equalsIgnoreCase(name));
+                attr = (Attribute) it.next();
+            } while (!attr.getName().equalsIgnoreCase(name));
 
             it.remove();
         }
@@ -193,4 +192,5 @@ public class CommentPlugin extends PluginAdapter {
         document.getRootElement().addElement(new TextElement(""));
         return true;
     }
+
 }
