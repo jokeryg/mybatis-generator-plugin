@@ -10,20 +10,18 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import java.util.List;
 
 /**
- *
- *  @Author: GuiRunning 郭贵荣
- *
- *  @Description: 整合Lombok
- *
- *  @Date: 2018/7/14 1:52
- *
+ * @Author: GuiRunning 郭贵荣
+ * @Description: 整合Lombok
+ * @Date: 2018/7/14 1:52
  */
 public class LombokPlugin extends PluginAdapter {
 
     private FullyQualifiedJavaType dataAnnotation;
+    private FullyQualifiedJavaType builderAnnotation;
 
     public LombokPlugin() {
         dataAnnotation = new FullyQualifiedJavaType("lombok.Data");
+        builderAnnotation = new FullyQualifiedJavaType("lombok.Builder");
     }
 
     @Override
@@ -120,9 +118,13 @@ public class LombokPlugin extends PluginAdapter {
      */
     protected void addDataAnnotation(TopLevelClass topLevelClass) {
         String data = properties.getProperty("data");
-        if(data!=null&&data.equals("true")) {
+        String builder = properties.getProperty("builder");
+        if (data != null && data.equals("true")) {
             topLevelClass.addImportedType(dataAnnotation);
             topLevelClass.addAnnotation("@Data");
+        }else if(builder != null && builder.equals("true")){
+            topLevelClass.addImportedType(builderAnnotation);
+            topLevelClass.addImportedType("@Builder");
         }
     }
 
