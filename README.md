@@ -69,6 +69,8 @@ fork 修改自 [GuoGuiRong 的 MyBatis Generator Lombok plugin and Comment](http
 		<plugin type="com.jokeryg.mybatis.generator.plugins.LombokPlugin" >
 		    <!--为true的时候自动为model类增加lombok的@Data注解-->
 			<property name="data" value="true"/>
+			<!--为true的时候自动为model类增加lombok的@Data注解-->
+            <property name="builder" value="true"/>
 		</plugin>
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
