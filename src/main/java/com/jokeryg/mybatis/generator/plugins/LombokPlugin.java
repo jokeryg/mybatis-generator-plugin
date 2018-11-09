@@ -125,7 +125,7 @@ public class LombokPlugin extends PluginAdapter {
         }
         if(builder != null && builder.equals("true")){
             topLevelClass.addImportedType(builderAnnotation);
-            topLevelClass.addImportedType("@Builder");
+            topLevelClass.addAnnotation("@Builder");
         }
     }
 
