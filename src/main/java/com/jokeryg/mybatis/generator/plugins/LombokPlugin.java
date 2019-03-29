@@ -18,10 +18,16 @@ public class LombokPlugin extends PluginAdapter {
 
     private FullyQualifiedJavaType dataAnnotation;
     private FullyQualifiedJavaType builderAnnotation;
+    private FullyQualifiedJavaType allArgsAnnotation;
+    private FullyQualifiedJavaType noArgsrAnnotation;
+
 
     public LombokPlugin() {
         dataAnnotation = new FullyQualifiedJavaType("lombok.Data");
         builderAnnotation = new FullyQualifiedJavaType("lombok.Builder");
+        allArgsAnnotation = new FullyQualifiedJavaType("lombok.AllArgsConstructor");
+        noArgsrAnnotation = new FullyQualifiedJavaType("lombok.NoArgsConstructor");
+
     }
 
     @Override
@@ -127,6 +133,12 @@ public class LombokPlugin extends PluginAdapter {
             topLevelClass.addImportedType(builderAnnotation);
             topLevelClass.addAnnotation("@Builder");
         }
+
+        topLevelClass.addImportedType(allArgsAnnotation);
+        topLevelClass.addAnnotation("@AllArgsConstructor");
+
+        topLevelClass.addImportedType(noArgsrAnnotation);
+        topLevelClass.addAnnotation("@NoArgsConstructor");
     }
 
 }
